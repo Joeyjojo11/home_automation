@@ -34,7 +34,7 @@ class MyDB():
 			st = datetime.datetime.fromtimestamp(ts).strftime('%Y-%m-%d %H:%M:%S')
 			#print st
 			self.cur.execute("INSERT INTO temps( sensor_id, Value, timestamp) VALUES (%s, %s, %s)", (sensor_id, float(sensor_temp), st))
-			print "Temps Updated"
+			print "%s Updated to value of %s" % sensor_id, sensor_temp
 			# Execute the SQL command
 			#cursor.execute(sql)
 		except Exception as e:

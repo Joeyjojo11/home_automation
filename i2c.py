@@ -63,10 +63,11 @@ def main():
                         temps_changed = True
                         temp_old[i] = temps[i]
                         db.update_temp(temp_names[i], temps[i])
-                        print "LCD Updated 1"
+                        
 
                 if temps_changed:
                     update_lcd(temps, temp_names)
+                    print "LCD Updated"
 
                 time.sleep(0.1)
 
