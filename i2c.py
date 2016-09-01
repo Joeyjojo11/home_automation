@@ -14,7 +14,7 @@ def main():
     print "Creating DB"
     #Connect to DB
     db = MyDB('localhost', 'root', '', 'test')
-    db.autocommit(True)
+    #db.autocommit(True)
     
     #i2c Variables
     bus = smbus.SMBus(1)
