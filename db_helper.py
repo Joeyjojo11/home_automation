@@ -17,16 +17,6 @@ class MyDB():
 			self.cur.execute("SELECT VERSION()")
 			print "Database version : %s " % self.cur.fetchone()
 
-	def test1(self):
-		# Do something with self.con or self.cur
-		self.cur.execute("SELECT name from test1 where id=1")
-		print "First Item : %s " % self.cur.fetchone()
-
-	def test2(self):
-		# Do something with self.con or self.cur
-		self.cur.execute("SELECT name from test1 where id=2")
-		print "Second Item : %s " % self.cur.fetchone()
-
 	def update_temp(self, sensor_id, sensor_temp):
 		try:
 			
@@ -34,7 +24,7 @@ class MyDB():
 			st = datetime.datetime.fromtimestamp(ts).strftime('%Y-%m-%d %H:%M:%S')
 			#print st
 			self.cur.execute("INSERT INTO temps( sensor_id, Value, timestamp) VALUES (%s, %s, %s)", (sensor_id, float(sensor_temp), st))
-			print "%s Updated to value of %s" % sensor_id, sensor_temp
+			print "%s Updated to value of %s" % (str(sensor_id), str(sensor_temp))
 			# Execute the SQL command
 			#cursor.execute(sql)
 		except Exception as e:
