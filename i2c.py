@@ -10,6 +10,7 @@ from db_helper import MyDB
 
 
 def main():
+    #Start Main
     print "Creating DB"
     #Connect to DB
     db = MyDB('localhost', 'root', '', 'test')
@@ -54,15 +55,15 @@ def main():
 
             if ord(recv) == 0: #if end character received
                 temps = data.split(",")
-        		data = ""
+                data = ""
 
                 temps_changed = False
                 for i in range(0, len(temp_names)):
-            		if temp_in_limits(temp_upper[i], temp_lower[i], temp_old[i], temps[i]) :
+                    if temp_in_limits(temp_upper[i], temp_lower[i], temp_old[i], temps[i]) :
                         temps_changed = True
-            		    temp_old[i] = temps[i]
-            		    db.update_temp(temp_names[i], temps[i])
-            		    print "LCD Updated 1"
+                        temp_old[i] = temps[i]
+                        db.update_temp(temp_names[i], temps[i])
+                        print "LCD Updated 1"
 
                 if temps_changed:
                     update_lcd(temps, temp_names)
@@ -89,9 +90,9 @@ def update_lcd(temps, temp_names):
         lcd = lcddriver.lcd()
         for i in range(0,3)
             lcd.lcd_display_string(temp_names[i] + temps[i] + "DegC", i)
-    	print ("Temp 1:", temps[0])
-    	print ("Temp 2:", temps[1])
-    	print ("Temp 3:", temps[2])
+        print ("Temp 1:", temps[0])
+        print ("Temp 2:", temps[1])
+        print ("Temp 3:", temps[2])
     except Exception as e:
         lcd.lcd_clear()
         lcd.lcd_display_string("Error Displaying Temps",1)
