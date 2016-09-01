@@ -32,8 +32,8 @@ def main():
     #Temperature Variables
     temp_names = ["HW Top Temp", "HW Bot Temp", "Hot Press"]
     temp_old = [-1.0,-1.0,-1.0] # Used to initialise the variables
-    temp_upper = [0.5, 0.5, 0.5]
-    temp_lower = [0.5, 0.5, 0.5]
+    temp_upper = [0.1, 0.1, 0.1]
+    temp_lower = [0.1, 0.1, 0.1]
 
     print "Starting"
 
@@ -103,6 +103,7 @@ def update_lcd(temps, temp_names):
 
 def temp_in_limits(upper, lower, setpoint,temp):
     try:
+	#print ("Temp is %s. Old Value is %s. Upper Limit is %s. Lower Limit is %s") % (str(temp), str(setpoint),str(float(setpoint)+float(upper)), str(float(setpoint)-float(lower)))
     	return (float(temp)  > (float(setpoint) + float(upper))) or (float(temp) < (float(setpoint) - float(lower)))
     except Exception as e:
 	print ("temp_in_limits Error", str(e))
