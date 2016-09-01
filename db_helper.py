@@ -25,15 +25,13 @@ class MyDB():
 		self.cur.execute("SELECT name from test1 where id=2")
 		print "Second Item : %s " % self.cur.fetchone()
 
-	def update_temp(sensor_id, sensor_temp):
+	def update_temp(self, sensor_id, sensor_temp):
 		try:
 			
 			ts = time.time()
 			st = datetime.datetime.fromtimestamp(ts).strftime('%Y-%m-%d %H:%M:%S')
 			print st
-			cur = db.cursor()
-			cur.execute("INSERT INTO temps( sensor_id, Value, timestamp) VALUES (%s, %s, %s)", (sensor_id, float(sensor_temp), st))
-			cur.close  
+			self.cur.execute("INSERT INTO temps( sensor_id, Value, timestamp) VALUES (%s, %s, %s)", (sensor_id, float(sensor_temp), st))
 			print "DB Updated"
 			# Execute the SQL command
 			#cursor.execute(sql)
@@ -41,7 +39,6 @@ class MyDB():
 			print ("Error:",str(e))
 
 	def get_inputs_status(self):
-		#cur = db.cursor()
 		self.cur.execute("SELECT SQL_NO_CACHE name,status FROM test.test1")
 		return self.cur.fetchall()
 
