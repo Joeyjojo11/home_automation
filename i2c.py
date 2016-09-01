@@ -88,7 +88,7 @@ def update_lcd(temps, temp_names):
     try:
         #print("Updating LCD \n Temp 1",temps[0])
         lcd = lcddriver.lcd()
-        for i in range(0,3)
+        for i in range(0,3):
             lcd.lcd_display_string(temp_names[i] + temps[i] + "DegC", i)
         print ("Temp 1:", temps[0])
         print ("Temp 2:", temps[1])
