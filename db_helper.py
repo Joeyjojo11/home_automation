@@ -1,5 +1,7 @@
 import sys
 import MySQLdb as mdb
+import time
+import datetime
 
 class MyDB():
 
@@ -30,9 +32,9 @@ class MyDB():
 			
 			ts = time.time()
 			st = datetime.datetime.fromtimestamp(ts).strftime('%Y-%m-%d %H:%M:%S')
-			print st
+			#print st
 			self.cur.execute("INSERT INTO temps( sensor_id, Value, timestamp) VALUES (%s, %s, %s)", (sensor_id, float(sensor_temp), st))
-			print "DB Updated"
+			print "Temps Updated"
 			# Execute the SQL command
 			#cursor.execute(sql)
 		except Exception as e:

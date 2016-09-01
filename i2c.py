@@ -7,7 +7,7 @@ import MySQLdb
 import lcddriver
 import datetime
 from db_helper import MyDB
-
+import sys, os
 
 def main():
     #Start Main
@@ -79,7 +79,9 @@ def main():
                     oldinput = inputs
 
         except Exception as e :
-              print ("Error:",str(e))
+	      exc_type, exc_obj, exc_tb = sys.exc_info()
+	      print ("Error at Line No:", exc_tb.tb_lineno)
+              print ("Main Loop Error:",str(e))
               time.sleep(1)
 
 
@@ -89,17 +91,20 @@ def update_lcd(temps, temp_names):
         #print("Updating LCD \n Temp 1",temps[0])
         lcd = lcddriver.lcd()
         for i in range(0,3):
-            lcd.lcd_display_string(temp_names[i] + temps[i] + "DegC", i)
-        print ("Temp 1:", temps[0])
-        print ("Temp 2:", temps[1])
-        print ("Temp 3:", temps[2])
+            lcd.lcd_display_string(temp_names[i] + str(temps[i]) + "DegC", i)
+        print ("Temp 1:", str(temps[0]))
+        print ("Temp 2:", str(temps[1]))
+        print ("Temp 3:", str(temps[2]))
     except Exception as e:
         lcd.lcd_clear()
         lcd.lcd_display_string("Error Displaying Temps",1)
         lcd.lcd_display_string(str(e),2)
 
-def temp_in_limits(upper, lower, setpoint, temp):
-    return (temp  > (setpoint + upper)) or (temp < (setpoint - lower))
+def temp_in_limits(upper, lower, setpoint,temp):
+    try:
+    	return (float(temp)  > (float(setpoint) + float(upper))) or (float(temp) < (float(setpoint) - float(lower)))
+    except Exception as e:
+	print ("temp_in_limits Error", str(e))
 
 if __name__ == "__main__":
     main()
